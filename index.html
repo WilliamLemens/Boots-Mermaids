@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MRED Graphs</title>
+  <link rel="stylesheet" type="text/css" href="assets/mermaid.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <main role="main">
+    <div class="container-fluid">
+      <h1 class="text-center"> Sample Page </h1>
+      <div class="pre-mermaid">
+        gantt
+      	 dateFormat HH:mm:ss.SSS
+      	 title Gantt
+
+        section Data
+        A :crit,  14:54:37.379, 14:56:20.741
+        B :  14:56:20.742, 15:01:33.915
+      </div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"> Tab 1 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true"> Tab 2 </a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+          <div class="pre-mermaid">
+            gantt
+          	  dateFormat HH:mm:ss.SSS
+              title Gantt for Tab 1
+
+              section A
+              SETUP :  14:54:37.379, 14:54:50.036
+              Thing 1:  14:54:50.041, 14:55:48.603
+              Thing 2 :crit,  14:55:48.604, 14:56:19.855
+              TEARDOWN :  14:56:19.855, 14:56:20.741
+
+              section B
+              SETUP :  14:56:20.742, 14:56:24.524
+              Thing 3 :  14:56:24.525, 14:57:45.757
+              Thing 4 :  14:57:45.758, 14:58:23.751
+              Thing 5 :  14:58:23.752, 15:00:41.113
+              Thing 6 :  15:00:41.113, 15:01:28.050
+              Thing 7 :  15:01:28.051, 15:01:33.339
+              TEARDOWN :  15:01:33.339, 15:01:33.915
+          </div>
+        </div>
+        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+          <div class="pre-mermaid">
+            graph LR
+              A[Hard edge] -->|Link text| B(Round edge)
+              B --> C{Decision}
+              C -->|One| D[Result one]
+              C -->|Two| E[Result two]
+          </div>
+          <div class="pre-mermaid">
+            sequenceDiagram
+              Alice->John: Hello John, how are you?
+              loop Every minute
+                John-->Alice: Great!
+              end
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="assets/mermaid.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad:false, cloneCssStyles:false, leftMargin: 0, flowchart:{useMaxWidth:false, htmlLabels:true}});
+    $('.pre-mermaid:visible').each( function( index, el) { // Renders all initially visible graphs
+      transferToMermaid($(el));
+    });
+    mermaid.init();
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) { // renders graph as you click the tab it lives in
+      // initializes each mermaid chart on this tab after changing the class from .pre-mermaid to .mermaid
+      mermaid.init(undefined, transferToMermaid($($(e.target).attr("href")+" > .pre-mermaid")));
+    });
+    function transferToMermaid(el) { // switches element from .pre-mermaid to .mermaid
+      el.removeClass('pre-mermaid');
+      el.addClass('mermaid');
+      return el;
+    }
+  </script>
+  <div class="mermaidTooltip" style="opacity: 0;"></div>
+</body>
+</html>
