@@ -76,7 +76,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="assets/mermaid.js"></script>
   <script>
-    mermaid.initialize({startOnLoad:false, cloneCssStyles:false, leftMargin: 0, flowchart:{useMaxWidth:false, htmlLabels:true}});
+    function transferToMermaid(el) { // switches element from .pre-mermaid to .mermaid
+      el.removeClass('pre-mermaid');
+      el.addClass('mermaid');
+      return el;
+    }
     $('.pre-mermaid:visible').each( function( index, el) { // Renders all initially visible graphs
       transferToMermaid($(el));
     });
@@ -85,11 +89,6 @@
       // initializes each mermaid chart on this tab after changing the class from .pre-mermaid to .mermaid
       mermaid.init(undefined, transferToMermaid($($(e.target).attr("href")+" > .pre-mermaid")));
     });
-    function transferToMermaid(el) { // switches element from .pre-mermaid to .mermaid
-      el.removeClass('pre-mermaid');
-      el.addClass('mermaid');
-      return el;
-    }
   </script>
   <div class="mermaidTooltip" style="opacity: 0;"></div>
 </body>
