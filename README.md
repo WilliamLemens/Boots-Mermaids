@@ -1,11 +1,11 @@
 # Bootstraps & Mermaids
 A demonstration of how to get Mermaid charts working properly when embedded in Bootstrap tab elements.
 ##### [Live link](https://williamlemens.com/assets/mermaid-sample.html)
-### A brief explanation:
+## A brief explanation:
 Mermaid charts will render even if they're not visible, so any charts embedded in invisible elements will simply render with dimensions of `-Infinity`. This is not very conducive to pretty charts when the element becomes visible, as they aren't reloaded.
 
 As such, this is a demo of my workaround. The important code is all in index.html.
-#### How it works
+### How it works
 By initially setting Mermaid charts `div`'s classes to `.pre-mermaid` instead of `.mermaid`, we avoid premature rendering.
 
 The script at the bottom of index.html is where the work happens.
