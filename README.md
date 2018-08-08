@@ -1,4 +1,4 @@
-# Bootstraps & Mermaids
+# Bootstrap & Mermaid
 A demonstration of how to get Mermaid charts working properly when embedded in Bootstrap tab elements.
 #### [Live link](https://williamlemens.com/assets/mermaid-sample.html)
 ## A brief explanation:
